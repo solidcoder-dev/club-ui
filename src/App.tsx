@@ -1,4 +1,4 @@
-import ClubWelcome from "./components/ClubWelcome.jsx";
+import ClubWelcome from "./components/ClubWelcome.tsx";
 
 function App() {
   const tenant = (import.meta.env.VITE_TENANT || "default").toLowerCase();

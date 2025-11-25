@@ -1,4 +1,8 @@
-function ClubWelcome({ tenant }) {
+type ClubWelcomeProps = {
+  tenant: string;
+};
+
+function ClubWelcome({ tenant }: ClubWelcomeProps) {
   return (
     <section className="card shadow-sm">
       <div className="card-body">
