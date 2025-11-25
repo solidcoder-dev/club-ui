@@ -1,5 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import ClubWelcome from "./components/ClubWelcome.tsx";
+import { Routes, Route } from "react-router-dom";
+import ClubWelcome from "./components/ClubWelcome";
+import ContactSection from "./components/ContactSection";
+import JoinSection from "./components/JoinSection";
+import NavBar from "./components/NavBar";
 import { createJsonClubAdapter } from "./adapters/jsonClubAdapter";
 import type { Club } from "./domain/club";
 
@@ -29,15 +33,29 @@ function App() {
   }, [clubPort]);
 
   return (
-    <main className="min-vh-100 d-flex align-items-center">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-6 col-md-8">
-            <ClubWelcome tenant={tenant} club={club} error={error} />
+    <>
+      <NavBar />
+      <main className="min-vh-100 d-flex align-items-start py-4">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-7 col-md-9">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <ClubWelcome tenant={tenant} club={club} error={error} />
+                    </>
+                  }
+                />
+                <Route path="/contacto" element={<ContactSection />} />
+                <Route path="/unete" element={<JoinSection />} />
+              </Routes>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 
