@@ -1,5 +1,10 @@
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useState, type FormEvent } from "react";
 import type { JoinFormHandlers, JoinFormValues } from "./join-form.types";
+import MembershipForm from "./MembershipForm";
+import PlayerInfoForm from "./PlayerInfoForm";
+import PrivacyForm from "./PrivacyForm";
+import SepaPaymentForm from "./SepaPaymentForm";
+import SubmitForm from "./SubmitForm";
 
 const initialValues: JoinFormValues = {
   nombre: "",
@@ -24,11 +29,7 @@ const initialValues: JoinFormValues = {
   acceptPrivacy: false
 };
 
-type JoinFormProps = {
-  children: (handlers: JoinFormHandlers) => ReactNode;
-};
-
-function JoinForm({ children }: JoinFormProps) {
+function JoinForm() {
   const [values, setValues] = useState<JoinFormValues>(initialValues);
   const [errors, setErrors] = useState<
     Partial<Record<keyof JoinFormValues, string>>
@@ -162,7 +163,7 @@ function JoinForm({ children }: JoinFormProps) {
     console.log("Solicitud de alta", values);
   };
 
-  return children({
+  const handlers: JoinFormHandlers = {
     values,
     onChange: handleChange,
     onFileChange: handleFileChange,
@@ -170,7 +171,17 @@ function JoinForm({ children }: JoinFormProps) {
     errors,
     submitDisabled,
     onSubmit: handleSubmit
-  });
+  };
+
+  return (
+    <form className="row g-3" onSubmit={handleSubmit}>
+      <PlayerInfoForm {...handlers} />
+      <MembershipForm {...handlers} />
+      <SepaPaymentForm {...handlers} />
+      <PrivacyForm {...handlers} />
+      <SubmitForm submitDisabled={submitDisabled} />
+    </form>
+  );
 }
 
 export default JoinForm;
