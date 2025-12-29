@@ -1,6 +1,7 @@
 export type SepaMandateInput = {
   clubName: string;
   clubAddress: string;
+  sepaCreditorId: string;
   debtorName: string;
   debtorEmail: string;
   debtorIban: string;

@@ -28,6 +28,7 @@ export const createSepaMandateUseCase = async ({
   return sepaMandatePort.createMandate({
     clubName: club.name,
     clubAddress: club.address,
+    sepaCreditorId: club.sepaCreditorId,
     debtorName: values.titularNombre,
     debtorEmail: values.titularEmail,
     debtorIban: values.iban,

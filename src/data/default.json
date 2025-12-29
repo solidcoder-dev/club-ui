@@ -3,5 +3,6 @@
   "name": "Club Central",
   "tagline": "Todos somos parte de la misma cancha",
   "description": "Programa inicial para tu club. Añade secciones, actividades y novedades manteniendo esta base sencilla.",
-  "address": "Avenida Central 123, 28000 Madrid"
+  "address": "Avenida Central 123, 28000 Madrid",
+  "sepaCreditorId": "ES12ZZZ00000000000"
 }
