@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import type { JoinFormValues } from "../JoinForm.types";
+import type {
+  JoinFormErrors,
+  JoinFormValues
+} from "../../../application/join/joinFormHandlers";
 
 type PrivacyFormViewProps = {
   values: JoinFormValues;
-  errors: Partial<Record<keyof JoinFormValues, string>>;
+  errors: JoinFormErrors;
   onToggleChange: (field: keyof JoinFormValues, checked: boolean) => void;
 };
 

@@ -1,4 +1,4 @@
-import type { JoinFormHandlers } from "../JoinForm.types";
+import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
 import PrivacyFormView from "./PrivacyFormView";
 
 type PrivacyFormProps = Pick<

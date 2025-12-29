@@ -1,8 +1,11 @@
-import type { JoinFormValues } from "../JoinForm.types";
+import type {
+  JoinFormErrors,
+  JoinFormValues
+} from "../../../application/join/joinFormHandlers";
 
 type MembershipFormViewProps = {
   values: JoinFormValues;
-  errors: Partial<Record<keyof JoinFormValues, string>>;
+  errors: JoinFormErrors;
   onChange: (field: keyof JoinFormValues, value: string) => void;
   onFileChange: (file: File | null) => void;
 };

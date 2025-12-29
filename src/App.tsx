@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import ClubWelcome from "./components/ClubWelcome";
-import ContactSection from "./components/ContactSection";
-import JoinSection from "./components/JoinSection";
-import NavBar from "./components/NavBar";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import LegalNotice from "./components/LegalNotice";
-import Footer from "./components/Footer";
+import ClubWelcome from "./ui/ClubWelcome";
+import ContactSection from "./ui/ContactSection";
+import JoinSection from "./ui/JoinSection";
+import NavBar from "./ui/NavBar";
+import PrivacyPolicy from "./ui/PrivacyPolicy";
+import LegalNotice from "./ui/LegalNotice";
+import Footer from "./ui/Footer";
 import { createJsonClubAdapter } from "./adapters/jsonClubAdapter";
 import type { Club } from "./domain/club";
 

@@ -1,4 +1,4 @@
-import type { JoinFormHandlers } from "../JoinForm.types";
+import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
 import MembershipFormView from "./MembershipFormView";
 
 type MembershipFormProps = Pick<

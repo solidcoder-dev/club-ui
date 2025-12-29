@@ -1,4 +1,8 @@
-import type { JoinFormHandlers, JoinFormValues } from "../JoinForm.types";
+import type {
+  JoinFormHandlers,
+  JoinFormValues
+} from "../../../application/join/joinFormHandlers";
+import { normalizeIban } from "../../../domain/join/iban";
 import SepaPaymentFormView from "./SepaPaymentFormView";
 
 type SepaPaymentFormProps = Pick<
@@ -16,7 +20,7 @@ function SepaPaymentForm({
 
   const handleChange = (field: keyof JoinFormValues, value: string) => {
     if (field === "iban") {
-      onChange(field, value.toUpperCase());
+      onChange(field, normalizeIban(value));
       return;
     }
     onChange(field, value);

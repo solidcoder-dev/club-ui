@@ -1,4 +1,4 @@
-import type { JoinFormHandlers } from "../JoinForm.types";
+import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
 import PlayerInfoFormView from "./PlayerInfoFormView";
 
 type PlayerInfoFormProps = Pick<JoinFormHandlers, "values" | "errors" | "onChange">;

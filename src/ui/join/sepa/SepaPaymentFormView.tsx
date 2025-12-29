@@ -1,8 +1,11 @@
-import type { JoinFormValues } from "../JoinForm.types";
+import type {
+  JoinFormErrors,
+  JoinFormValues
+} from "../../../application/join/joinFormHandlers";
 
 type SepaPaymentFormViewProps = {
   values: JoinFormValues;
-  errors: Partial<Record<keyof JoinFormValues, string>>;
+  errors: JoinFormErrors;
   showHolderFields: boolean;
   onChange: (field: keyof JoinFormValues, value: string) => void;
   onToggleChange: (field: keyof JoinFormValues, checked: boolean) => void;

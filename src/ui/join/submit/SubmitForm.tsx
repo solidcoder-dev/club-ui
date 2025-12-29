@@ -1,4 +1,4 @@
-import type { JoinFormHandlers } from "../JoinForm.types";
+import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
 import SubmitFormView from "./SubmitFormView";
 
 type SubmitFormProps = Pick<JoinFormHandlers, "submitDisabled">;
