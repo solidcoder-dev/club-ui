@@ -1,12 +1,17 @@
 import { useJoinForm } from "../../application/join/useJoinForm";
+import type { JoinFormValues } from "../../domain/join/joinRequestTypes";
 import MembershipForm from "./membership/MembershipForm";
 import PlayerInfoForm from "./player-info/PlayerInfoForm";
 import PrivacyForm from "./privacy/PrivacyForm";
 import SepaPaymentForm from "./sepa/SepaPaymentForm";
 import SubmitForm from "./submit/SubmitForm";
 
-function JoinForm() {
-  const handlers = useJoinForm();
+type JoinFormProps = {
+  onSubmitValid: (values: JoinFormValues) => void;
+};
+
+function JoinForm({ onSubmitValid }: JoinFormProps) {
+  const handlers = useJoinForm({ onSubmitValid });
   const { submitDisabled } = handlers;
 
   return (

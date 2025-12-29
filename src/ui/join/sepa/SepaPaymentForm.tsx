@@ -1,8 +1,4 @@
-import type {
-  JoinFormHandlers,
-  JoinFormValues
-} from "../../../application/join/joinFormHandlers";
-import { normalizeIban } from "../../../domain/join/iban";
+import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
 import SepaPaymentFormView from "./SepaPaymentFormView";
 
 type SepaPaymentFormProps = Pick<
@@ -18,20 +14,12 @@ function SepaPaymentForm({
 }: SepaPaymentFormProps) {
   const showHolderFields = !values.titularMismoQueJugador;
 
-  const handleChange = (field: keyof JoinFormValues, value: string) => {
-    if (field === "iban") {
-      onChange(field, normalizeIban(value));
-      return;
-    }
-    onChange(field, value);
-  };
-
   return (
     <SepaPaymentFormView
       values={values}
       errors={errors}
       showHolderFields={showHolderFields}
-      onChange={handleChange}
+      onChange={onChange}
       onToggleChange={onToggleChange}
     />
   );

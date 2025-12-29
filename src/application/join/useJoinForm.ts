@@ -30,7 +30,11 @@ const initialValues: JoinFormValues = {
   acceptPrivacy: false
 };
 
-export const useJoinForm = () => {
+type UseJoinFormConfig = {
+  onSubmitValid: (values: JoinFormValues) => void;
+};
+
+export const useJoinForm = ({ onSubmitValid }: UseJoinFormConfig) => {
   const [values, setValues] = useState<JoinFormValues>(initialValues);
 
   const errors = useMemo(() => validateJoinRequest(values), [values]);
@@ -60,9 +64,7 @@ export const useJoinForm = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (Object.values(errors).some(Boolean)) return;
-
-    // Aquí podrías llamar a un puerto/adaptador para enviar los datos.
-    console.log("Solicitud de alta", values);
+    onSubmitValid(values);
   };
 
   const handlers: JoinFormHandlers = {

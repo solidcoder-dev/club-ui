@@ -8,11 +8,13 @@ import PrivacyPolicy from "./ui/PrivacyPolicy";
 import LegalNotice from "./ui/LegalNotice";
 import Footer from "./ui/Footer";
 import { createJsonClubAdapter } from "./adapters/jsonClubAdapter";
+import { createSepaMandateAdapter } from "./adapters/sepaMandateAdapter";
 import type { Club } from "./domain/club";
 
 function App() {
   const tenant = (import.meta.env.VITE_TENANT || "default").toLowerCase();
   const clubPort = useMemo(() => createJsonClubAdapter(tenant), [tenant]);
+  const sepaMandatePort = useMemo(() => createSepaMandateAdapter(), []);
   const [club, setClub] = useState<Club | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,7 +50,12 @@ function App() {
                   element={<ClubWelcome tenant={tenant} club={club} error={error} />}
                 />
                 <Route path="/contacto" element={<ContactSection />} />
-                <Route path="/unete" element={<JoinSection />} />
+                <Route
+                  path="/unete"
+                  element={
+                    <JoinSection club={club} sepaMandatePort={sepaMandatePort} />
+                  }
+                />
                 <Route path="/privacidad" element={<PrivacyPolicy />} />
                 <Route path="/aviso-legal" element={<LegalNotice />} />
               </Routes>
