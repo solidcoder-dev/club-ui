@@ -1,11 +1,8 @@
 import { useMemo, useState, type FormEvent } from "react";
 import type { JoinRequestValues } from "../application/join/joinRequestPresenter";
-import { normalizeIban } from "../../domain/join/iban";
-import {
-  syncHolderFromPlayer,
-  validateJoinRequest
-} from "../../domain/join/joinRequest";
 import type { JoinRequestHandlers } from "../application/join/joinRequestPresenter";
+import {syncHolderFromPlayer, validateJoinRequest} from "../domain/join/joinRequest.ts";
+import {normalizeIban} from "../domain/join/iban.ts";
 
 const initialValues: JoinRequestValues = {
   nombre: "",

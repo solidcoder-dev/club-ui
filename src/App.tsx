@@ -10,6 +10,7 @@ import Footer from "./ui/Footer";
 import { createJsonClubAdapter } from "./infrastructure/jsonClubAdapter";
 import { createSepaMandateAdapter } from "./infrastructure/sepaMandateAdapter";
 import { createLocalStorageJoinRequestAdapter } from "./infrastructure/localStorageJoinRequestAdapter";
+import { createBrowserClientContextAdapter } from "./infrastructure/browserClientContextAdapter";
 import type { Club } from "./domain/club";
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
   const sepaMandatePort = useMemo(() => createSepaMandateAdapter(), []);
   const joinRequestStoragePort = useMemo(
     () => createLocalStorageJoinRequestAdapter(),
+    []
+  );
+  const clientContextPort = useMemo(
+    () => createBrowserClientContextAdapter(),
     []
   );
   const [club, setClub] = useState<Club | null>(null);
@@ -62,6 +67,7 @@ function App() {
                       club={club}
                       sepaMandatePort={sepaMandatePort}
                       storagePort={joinRequestStoragePort}
+                      clientContextPort={clientContextPort}
                     />
                   }
                 />

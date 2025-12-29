@@ -8,6 +8,11 @@ export type SepaMandateInput = {
   amount: number;
   currency: string;
   consent: boolean;
+  mandateType: "CORE";
+  frequency: "MONTHLY";
+  sequenceType: "RCUR";
+  signedFromIp: string;
+  signedUserAgent: string;
 };
 
 export type SepaMandate = SepaMandateInput & {
