@@ -1,11 +1,11 @@
 import { useMemo, useState, type FormEvent } from "react";
-import type { JoinRequestValues } from "./joinRequestPresenter";
+import type { JoinRequestValues } from "../application/join/joinRequestPresenter";
 import { normalizeIban } from "../../domain/join/iban";
 import {
   syncHolderFromPlayer,
   validateJoinRequest
 } from "../../domain/join/joinRequest";
-import type { JoinRequestHandlers } from "./joinRequestPresenter";
+import type { JoinRequestHandlers } from "../application/join/joinRequestPresenter";
 
 const initialValues: JoinRequestValues = {
   nombre: "",
@@ -34,7 +34,9 @@ type UseJoinFormConfig = {
   onSubmitRequest: (values: JoinRequestValues) => void;
 };
 
-export const useJoinRequest = ({ onSubmitRequest }: UseJoinFormConfig) => {
+export const useJoinRequestPresenter = ({
+  onSubmitRequest
+}: UseJoinFormConfig) => {
   const [values, setValues] = useState<JoinRequestValues>(initialValues);
 
   const errors = useMemo(() => validateJoinRequest(values), [values]);

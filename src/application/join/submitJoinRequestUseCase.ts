@@ -2,7 +2,7 @@ import type { Club } from "../../domain/club";
 import type { JoinRequestValues } from "./joinRequestPresenter";
 import type { SepaMandatePort } from "../../ports/sepa-mandate-port";
 import type { JoinRequestStoragePort } from "../../ports/join-request-storage-port";
-import { createSepaMandate } from "./createSepaMandate";
+import { createSepaMandateUseCase } from "./createSepaMandateUseCase";
 
 type SubmitJoinRequestParams = {
   values: JoinRequestValues;
@@ -11,13 +11,13 @@ type SubmitJoinRequestParams = {
   storagePort: JoinRequestStoragePort;
 };
 
-export const submitJoinRequest = ({
+export const submitJoinRequestUseCase = ({
   values,
   club,
   sepaMandatePort,
   storagePort
 }: SubmitJoinRequestParams) => {
-  const mandate = createSepaMandate({ values, club, sepaMandatePort });
+  const mandate = createSepaMandateUseCase({ values, club, sepaMandatePort });
   storagePort.save({
     player: values,
     mandate,

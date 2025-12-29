@@ -2,7 +2,7 @@ import JoinRequestForm from "./join/JoinRequestForm";
 import type { Club } from "../domain/club";
 import type { SepaMandatePort } from "../ports/sepa-mandate-port";
 import type { JoinRequestStoragePort } from "../ports/join-request-storage-port";
-import { submitJoinRequest } from "../application/join/submitJoinRequest";
+import { submitJoinRequestUseCase } from "../application/join/submitJoinRequestUseCase";
 import type { JoinRequestValues } from "../application/join/joinRequestPresenter";
 
 type JoinSectionProps = {
@@ -14,7 +14,7 @@ type JoinSectionProps = {
 function JoinSection({ club, sepaMandatePort, storagePort }: JoinSectionProps) {
   const handleJoinRequest = (values: JoinRequestValues) => {
     if (!club) return;
-    const mandate = submitJoinRequest({
+    const mandate = submitJoinRequestUseCase({
       values,
       club,
       sepaMandatePort,

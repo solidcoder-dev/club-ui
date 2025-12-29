@@ -1,4 +1,4 @@
-import { useJoinRequest } from "../../application/join/useJoinRequest";
+import { useJoinRequestPresenter } from "../useJoinRequest";
 import type { JoinRequestValues } from "../../application/join/joinRequestPresenter";
 import MembershipForm from "./membership/MembershipForm";
 import PlayerInfoForm from "./player-info/PlayerInfoForm";
@@ -11,7 +11,7 @@ type JoinFormProps = {
 };
 
 function JoinRequestForm({ onSubmitRequest }: JoinFormProps) {
-  const handlers = useJoinRequest({ onSubmitRequest });
+  const handlers = useJoinRequestPresenter({ onSubmitRequest });
   const { submitDisabled } = handlers;
 
   return (

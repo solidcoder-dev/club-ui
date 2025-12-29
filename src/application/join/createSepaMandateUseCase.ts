@@ -9,7 +9,7 @@ type CreateSepaMandateParams = {
   sepaMandatePort: SepaMandatePort;
 };
 
-export const createSepaMandate = ({
+export const createSepaMandateUseCase = ({
   values,
   club,
   sepaMandatePort
