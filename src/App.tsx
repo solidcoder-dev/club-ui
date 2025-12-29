@@ -11,6 +11,8 @@ import { createJsonClubAdapter } from "./infrastructure/jsonClubAdapter";
 import { createSepaMandateAdapter } from "./infrastructure/sepaMandateAdapter";
 import { createLocalStorageJoinRequestAdapter } from "./infrastructure/localStorageJoinRequestAdapter";
 import { createBrowserClientContextAdapter } from "./infrastructure/browserClientContextAdapter";
+import { createEmailNotificationAdapter } from "./infrastructure/emailNotificationAdapter";
+import { createSepaNoticeTemplateAdapter } from "./infrastructure/sepaNoticeTemplateAdapter";
 import type { Club } from "./domain/club";
 
 function App() {
@@ -23,6 +25,19 @@ function App() {
   );
   const clientContextPort = useMemo(
     () => createBrowserClientContextAdapter(),
+    []
+  );
+  const notificationPort = useMemo(
+    () =>
+      createEmailNotificationAdapter({
+        serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
+        templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
+        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ""
+      }),
+    []
+  );
+  const templateRendererPort = useMemo(
+    () => createSepaNoticeTemplateAdapter(),
     []
   );
   const [club, setClub] = useState<Club | null>(null);
@@ -68,6 +83,8 @@ function App() {
                       sepaMandatePort={sepaMandatePort}
                       storagePort={joinRequestStoragePort}
                       clientContextPort={clientContextPort}
+                      notificationPort={notificationPort}
+                      templateRendererPort={templateRendererPort}
                     />
                   }
                 />
