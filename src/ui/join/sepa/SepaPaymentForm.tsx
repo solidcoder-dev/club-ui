@@ -1,8 +1,8 @@
-import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
+import type { JoinRequestHandlers } from "../../../application/join/joinRequestPresenter";
 import SepaPaymentFormView from "./SepaPaymentFormView";
 
 type SepaPaymentFormProps = Pick<
-  JoinFormHandlers,
+  JoinRequestHandlers,
   "values" | "errors" | "onChange" | "onToggleChange"
 >;
 

@@ -1,14 +1,14 @@
 import type {
-  JoinFormErrors,
-  JoinFormValues
-} from "../../../application/join/joinFormHandlers";
+  JoinRequestErrors,
+  JoinRequestValues
+} from "../../../application/join/joinRequestPresenter";
 
 type SepaPaymentFormViewProps = {
-  values: JoinFormValues;
-  errors: JoinFormErrors;
+  values: JoinRequestValues;
+  errors: JoinRequestErrors;
   showHolderFields: boolean;
-  onChange: (field: keyof JoinFormValues, value: string) => void;
-  onToggleChange: (field: keyof JoinFormValues, checked: boolean) => void;
+  onChange: (field: keyof JoinRequestValues, value: string) => void;
+  onToggleChange: (field: keyof JoinRequestValues, checked: boolean) => void;
 };
 
 function SepaPaymentFormView({

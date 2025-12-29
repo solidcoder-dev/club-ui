@@ -1,13 +1,13 @@
 import { useMemo, useState, type FormEvent } from "react";
-import type { JoinFormValues } from "../../domain/join/joinRequestTypes";
+import type { JoinRequestValues } from "./joinRequestPresenter";
 import { normalizeIban } from "../../domain/join/iban";
 import {
   syncHolderFromPlayer,
   validateJoinRequest
 } from "../../domain/join/joinRequest";
-import type { JoinFormHandlers } from "./joinFormHandlers";
+import type { JoinRequestHandlers } from "./joinRequestPresenter";
 
-const initialValues: JoinFormValues = {
+const initialValues: JoinRequestValues = {
   nombre: "",
   apellidos: "",
   telefono: "",
@@ -31,21 +31,21 @@ const initialValues: JoinFormValues = {
 };
 
 type UseJoinFormConfig = {
-  onSubmitValid: (values: JoinFormValues) => void;
+  onSubmitRequest: (values: JoinRequestValues) => void;
 };
 
-export const useJoinForm = ({ onSubmitValid }: UseJoinFormConfig) => {
-  const [values, setValues] = useState<JoinFormValues>(initialValues);
+export const useJoinRequest = ({ onSubmitRequest }: UseJoinFormConfig) => {
+  const [values, setValues] = useState<JoinRequestValues>(initialValues);
 
   const errors = useMemo(() => validateJoinRequest(values), [values]);
   const submitDisabled = Object.values(errors).some(Boolean);
 
-  const handleChange = (field: keyof JoinFormValues, value: string) => {
+  const handleChange = (field: keyof JoinRequestValues, value: string) => {
     setValues((prev) => {
       const next = {
         ...prev,
         [field]: field === "iban" ? normalizeIban(value) : value
-      } as JoinFormValues;
+      } as JoinRequestValues;
       return syncHolderFromPlayer(next);
     });
   };
@@ -54,9 +54,12 @@ export const useJoinForm = ({ onSubmitValid }: UseJoinFormConfig) => {
     setValues((prev) => ({ ...prev, justificante: file }));
   };
 
-  const handleToggleChange = (field: keyof JoinFormValues, checked: boolean) => {
+  const handleToggleChange = (
+    field: keyof JoinRequestValues,
+    checked: boolean
+  ) => {
     setValues((prev) => {
-      const next = { ...prev, [field]: checked } as JoinFormValues;
+      const next = { ...prev, [field]: checked } as JoinRequestValues;
       return syncHolderFromPlayer(next);
     });
   };
@@ -64,10 +67,10 @@ export const useJoinForm = ({ onSubmitValid }: UseJoinFormConfig) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (Object.values(errors).some(Boolean)) return;
-    onSubmitValid(values);
+    onSubmitRequest(values);
   };
 
-  const handlers: JoinFormHandlers = {
+  const handlers: JoinRequestHandlers = {
     values,
     onChange: handleChange,
     onFileChange: handleFileChange,

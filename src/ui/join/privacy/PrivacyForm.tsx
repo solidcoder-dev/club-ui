@@ -1,8 +1,8 @@
-import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
+import type { JoinRequestHandlers } from "../../../application/join/joinRequestPresenter";
 import PrivacyFormView from "./PrivacyFormView";
 
 type PrivacyFormProps = Pick<
-  JoinFormHandlers,
+  JoinRequestHandlers,
   "values" | "errors" | "onToggleChange"
 >;
 

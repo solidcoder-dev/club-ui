@@ -1,12 +1,12 @@
 import type {
-  JoinFormErrors,
-  JoinFormValues
-} from "../../../application/join/joinFormHandlers";
+  JoinRequestErrors,
+  JoinRequestValues
+} from "../../../application/join/joinRequestPresenter";
 
 type MembershipFormViewProps = {
-  values: JoinFormValues;
-  errors: JoinFormErrors;
-  onChange: (field: keyof JoinFormValues, value: string) => void;
+  values: JoinRequestValues;
+  errors: JoinRequestErrors;
+  onChange: (field: keyof JoinRequestValues, value: string) => void;
   onFileChange: (file: File | null) => void;
 };
 

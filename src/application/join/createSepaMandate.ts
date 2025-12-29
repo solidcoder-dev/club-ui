@@ -1,10 +1,10 @@
 import type { Club } from "../../domain/club";
 import type { SepaMandate } from "../../domain/sepa/mandate";
 import type { SepaMandatePort } from "../../ports/sepa-mandate-port";
-import type { JoinFormValues } from "../../domain/join/joinRequestTypes";
+import type { JoinRequestValues } from "./joinRequestPresenter";
 
 type CreateSepaMandateParams = {
-  values: JoinFormValues;
+  values: JoinRequestValues;
   club: Club;
   sepaMandatePort: SepaMandatePort;
 };

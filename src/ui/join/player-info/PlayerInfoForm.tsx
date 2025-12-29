@@ -1,7 +1,10 @@
-import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
+import type { JoinRequestHandlers } from "../../../application/join/joinRequestPresenter";
 import PlayerInfoFormView from "./PlayerInfoFormView";
 
-type PlayerInfoFormProps = Pick<JoinFormHandlers, "values" | "errors" | "onChange">;
+type PlayerInfoFormProps = Pick<
+  JoinRequestHandlers,
+  "values" | "errors" | "onChange"
+>;
 
 function PlayerInfoForm({ values, errors, onChange }: PlayerInfoFormProps) {
   return (

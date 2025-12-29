@@ -1,8 +1,8 @@
-import JoinForm from "./join/JoinForm";
+import JoinRequestForm from "./join/JoinRequestForm";
 import type { Club } from "../domain/club";
 import type { SepaMandatePort } from "../ports/sepa-mandate-port";
 import { createSepaMandate } from "../application/join/createSepaMandate";
-import type { JoinFormValues } from "../domain/join/joinRequestTypes";
+import type { JoinRequestValues } from "../application/join/joinRequestPresenter";
 
 type JoinSectionProps = {
   club: Club | null;
@@ -10,7 +10,7 @@ type JoinSectionProps = {
 };
 
 function JoinSection({ club, sepaMandatePort }: JoinSectionProps) {
-  const handleSubmitValid = (values: JoinFormValues) => {
+  const handleJoinRequest = (values: JoinRequestValues) => {
     if (!club) return;
     const mandate = createSepaMandate({ values, club, sepaMandatePort });
     console.log("Mandato SEPA generado", mandate);
@@ -24,7 +24,7 @@ function JoinSection({ club, sepaMandatePort }: JoinSectionProps) {
           Completa el formulario para iniciar el alta. Nos pondremos en contacto
           contigo para confirmar los próximos pasos.
         </p>
-        <JoinForm onSubmitValid={handleSubmitValid} />
+        <JoinRequestForm onSubmitRequest={handleJoinRequest} />
       </div>
     </section>
   );

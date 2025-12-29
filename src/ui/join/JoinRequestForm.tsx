@@ -1,5 +1,5 @@
-import { useJoinForm } from "../../application/join/useJoinForm";
-import type { JoinFormValues } from "../../domain/join/joinRequestTypes";
+import { useJoinRequest } from "../../application/join/useJoinRequest";
+import type { JoinRequestValues } from "../../application/join/joinRequestPresenter";
 import MembershipForm from "./membership/MembershipForm";
 import PlayerInfoForm from "./player-info/PlayerInfoForm";
 import PrivacyForm from "./privacy/PrivacyForm";
@@ -7,11 +7,11 @@ import SepaPaymentForm from "./sepa/SepaPaymentForm";
 import SubmitForm from "./submit/SubmitForm";
 
 type JoinFormProps = {
-  onSubmitValid: (values: JoinFormValues) => void;
+  onSubmitRequest: (values: JoinRequestValues) => void;
 };
 
-function JoinForm({ onSubmitValid }: JoinFormProps) {
-  const handlers = useJoinForm({ onSubmitValid });
+function JoinRequestForm({ onSubmitRequest }: JoinFormProps) {
+  const handlers = useJoinRequest({ onSubmitRequest });
   const { submitDisabled } = handlers;
 
   return (
@@ -25,4 +25,4 @@ function JoinForm({ onSubmitValid }: JoinFormProps) {
   );
 }
 
-export default JoinForm;
+export default JoinRequestForm;

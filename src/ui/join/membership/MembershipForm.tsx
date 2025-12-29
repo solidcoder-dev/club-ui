@@ -1,8 +1,8 @@
-import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
+import type { JoinRequestHandlers } from "../../../application/join/joinRequestPresenter";
 import MembershipFormView from "./MembershipFormView";
 
 type MembershipFormProps = Pick<
-  JoinFormHandlers,
+  JoinRequestHandlers,
   "values" | "errors" | "onChange" | "onFileChange"
 >;
 

@@ -1,7 +1,7 @@
-import type { JoinFormHandlers } from "../../../application/join/joinFormHandlers";
+import type { JoinRequestHandlers } from "../../../application/join/joinRequestPresenter";
 import SubmitFormView from "./SubmitFormView";
 
-type SubmitFormProps = Pick<JoinFormHandlers, "submitDisabled">;
+type SubmitFormProps = Pick<JoinRequestHandlers, "submitDisabled">;
 
 function SubmitForm({ submitDisabled }: SubmitFormProps) {
   return <SubmitFormView submitDisabled={submitDisabled} />;
