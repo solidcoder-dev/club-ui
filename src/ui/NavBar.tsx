@@ -3,7 +3,7 @@ import "bootstrap/js/dist/collapse";
 
 function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-white border-bottom mb-4">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
       <div className="container">
         <Link className="navbar-brand fw-bold" to="/">
           Club
@@ -25,7 +25,7 @@ function NavBar() {
               <NavLink
                 to="/contacto"
                 className={({ isActive }) =>
-                  `nav-link ${isActive ? "active fw-semibold" : ""}`
+                  `nav-link ${isActive ? "active fw-semibold text-white" : ""}`
                 }
               >
                 Contacto
@@ -35,7 +35,7 @@ function NavBar() {
               <NavLink
                 to="/unete"
                 className={({ isActive }) =>
-                  `nav-link ${isActive ? "active fw-semibold" : ""}`
+                  `nav-link ${isActive ? "active fw-semibold text-white" : ""}`
                 }
               >
                 Únete

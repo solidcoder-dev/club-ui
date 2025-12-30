@@ -8,12 +8,12 @@ function ContactTrainingView({ training }: ContactTrainingViewProps) {
   if (!training) return null;
 
   return (
-    <div className="mb-3 p-3 bg-light border rounded">
+    <div className="mb-3 p-3 bg-body-tertiary border rounded">
       <div className="d-flex flex-wrap align-items-center gap-2 mb-2">
         <h2 className="h6 mb-0">Entrenamientos</h2>
         <span className="badge bg-primary">{training.schedule}</span>
       </div>
-      <div className="text-secondary mb-2">{training.location}</div>
+      <div className="text-body-secondary mb-2">{training.location}</div>
       <a
         className="btn btn-outline-primary btn-sm"
         href={training.mapsUrl}

@@ -24,10 +24,9 @@ function JoinSection({ club, submitJoinRequestUseCase }: JoinSectionProps) {
   };
 
   return (
-    <section className="card shadow-sm">
-      <div className="card-body">
+    <section>
         <h1 className="card-title h4 fw-bold mb-3">Únete</h1>
-        <p className="text-secondary mb-4">
+        <p className="text-body-emphasis mb-4">
           Completa el formulario para iniciar el alta. Nos pondremos en contacto
           contigo para confirmar los próximos pasos.
         </p>
@@ -40,7 +39,6 @@ function JoinSection({ club, submitJoinRequestUseCase }: JoinSectionProps) {
           />
         )}
         <JoinRequestForm onSubmitRequest={handleJoinRequest} />
-      </div>
     </section>
   );
 }

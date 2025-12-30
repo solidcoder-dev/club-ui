@@ -21,17 +21,15 @@ function ContactSection({ club, submitContactUseCase }: ContactSectionProps) {
   });
 
   return (
-    <section className="card shadow-sm">
-      <div className="card-body">
+    <section>
         <h1 className="card-title h4 fw-bold mb-3">Contacto</h1>
-        <p className="text-secondary mb-3">
+        <p className="text-body-emphasis mb-3">
           Escríbenos para coordinar entrenamientos, colaboraciones o resolver
           dudas sobre el club.
         </p>
         <ContactTrainingView training={club?.training} />
         <ContactStatusView status={presenter.status} />
         <ContactForm {...presenter} />
-      </div>
     </section>
   );
 }
