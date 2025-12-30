@@ -12,6 +12,7 @@ import { createSepaMandateAdapter } from "./infrastructure/sepaMandateAdapter";
 import { createLocalStorageJoinRequestAdapter } from "./infrastructure/localStorageJoinRequestAdapter";
 import { createBrowserClientContextAdapter } from "./infrastructure/browserClientContextAdapter";
 import {
+    createEmailNotificationAdapter,
     createFakeEmailNotificationAdapter
 } from "./infrastructure/emailNotificationAdapter";
 import { createSepaNoticeTemplateAdapter } from "./infrastructure/sepaNoticeTemplateAdapter";
@@ -32,7 +33,7 @@ function App() {
   );
   const notificationPort = useMemo(
     () =>
-      createFakeEmailNotificationAdapter({ // TODO use real email adapter
+      createEmailNotificationAdapter({ // TODO use real email adapter
         serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
         templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
         publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ""

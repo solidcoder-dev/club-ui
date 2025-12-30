@@ -18,7 +18,7 @@ const paragraph = (doc: jsPDF, y: number, text: string) => {
 };
 
 export function createSepaMandatePdfAdapter(): MandatePdfPort {
-  const download = (mandate: SepaMandate) => {
+  const buildDocument = (mandate: SepaMandate) => {
     const doc = new jsPDF();
     let y = 20;
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -115,9 +115,13 @@ export function createSepaMandatePdfAdapter(): MandatePdfPort {
       doc.text("Firma no disponible.", 14, y + 6);
     }
 
-    const fileName = `sepa-mandate-${mandate.mandateReference}.pdf`;
-    doc.save(fileName);
+    return doc;
   };
 
-  return { download };
+  const toDataUrl = (mandate: SepaMandate) => {
+    const doc = buildDocument(mandate);
+    return doc.output("datauristring");
+  };
+
+  return { toDataUrl };
 }

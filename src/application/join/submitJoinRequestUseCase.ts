@@ -40,8 +40,6 @@ export const submitJoinRequestUseCase = async ({
     mandate,
     savedAt: new Date().toISOString()
   });
-  mandatePdfPort.download(mandate);
-
   const formattedAmount = Number.parseFloat(values.importe || "0").toFixed(2);
   const chargeDate = new Date();
   chargeDate.setDate(chargeDate.getDate() + 7);
@@ -51,7 +49,7 @@ export const submitJoinRequestUseCase = async ({
     ibanClean.length > 6
       ? `${ibanClean.slice(0, 2)}${"*".repeat(ibanClean.length - 6)}${ibanClean.slice(-4)}`
       : ibanClean;
-  const message = templateRendererPort.render({
+  const message = templateRendererPort.render("sepaNotice", {
     name: values.titularNombre,
     date: formattedDate,
     amount: formattedAmount,
@@ -61,11 +59,51 @@ export const submitJoinRequestUseCase = async ({
     clubName: club.name
   });
 
-  await notificationPort.notify({
-    title: "Aviso de cargo SEPA",
-    message,
-    recipientEmail: values.titularEmail
-  });
+  // await notificationPort.notify({
+  //   title: "Aviso de cargo SEPA",
+  //   message,
+  //   recipientEmail: values.titularEmail
+  // });
+
+  if (club.email) {
+    const adminMessage = templateRendererPort.render("sepaAdminNotice", {
+      clubName: club.name,
+      creditor: club.sepaCreditorId,
+      mandateReference: mandate.mandateReference,
+      amount: formattedAmount,
+      debtorName: mandate.debtorName,
+      debtorEmail: mandate.debtorEmail,
+      iban: mandate.debtorIban,
+      debtorAddress: mandate.debtorAddress,
+      signedAt: mandate.signedAt,
+      signedFromIp: mandate.signedFromIp,
+      signedUserAgent: mandate.signedUserAgent,
+      mandateType: mandate.mandateType,
+      frequency: mandate.frequency,
+      sequenceType: mandate.sequenceType
+    });
+
+    const attachmentDataUrl = mandatePdfPort.toDataUrl(mandate);
+    downloadPdf(
+      attachmentDataUrl,
+      `sepa-mandate-${mandate.mandateReference}.pdf`
+    );
+
+    // await notificationPort.notify({
+    //   title: "Nuevo mandato SEPA",
+    //   message: adminMessage,
+    //   recipientEmail: club.email,
+    //   attachmentDataUrl,
+    //   attachmentName: `sepa-mandate-${mandate.mandateReference}.pdf`
+    // });
+  }
 
   return mandate;
+};
+
+const downloadPdf = (dataUrl: string, name: string) => {
+  const link = document.createElement("a");
+  link.href = dataUrl;
+  link.download = name;
+  link.click();
 };

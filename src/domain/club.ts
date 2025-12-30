@@ -5,6 +5,7 @@ export type ClubDTO = {
   description: string;
   address: string;
   sepaCreditorId: string;
+  email: string;
 };
 
 export class Club {
@@ -14,7 +15,8 @@ export class Club {
     public readonly tagline: string,
     public readonly description: string,
     public readonly address: string,
-    public readonly sepaCreditorId: string
+    public readonly sepaCreditorId: string,
+    public readonly email: string
   ) {}
 
   static fromDTO(dto: ClubDTO): Club {
@@ -24,7 +26,8 @@ export class Club {
       dto.tagline,
       dto.description,
       dto.address,
-      dto.sepaCreditorId
+      dto.sepaCreditorId,
+      dto.email
     );
   }
 }

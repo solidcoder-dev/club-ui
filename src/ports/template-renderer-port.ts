@@ -1,5 +1,6 @@
 export type TemplateVariables = Record<string, string>;
+export type TemplateId = "sepaNotice" | "sepaAdminNotice";
 
 export interface TemplateRendererPort {
-  render(variables: TemplateVariables): string;
+  render(templateId: TemplateId, variables: TemplateVariables): string;
 }

@@ -1,8 +1,10 @@
 import type {
+  TemplateId,
   TemplateRendererPort,
   TemplateVariables
 } from "../ports/template-renderer-port";
 import sepaNoticeTemplate from "./templates/sepaNotice.html?raw";
+import sepaAdminNoticeTemplate from "./templates/sepaAdminNotice.html?raw";
 
 const renderTemplate = (template: string, variables: TemplateVariables) => {
   return Object.entries(variables).reduce((acc, [key, value]) => {
@@ -12,8 +14,13 @@ const renderTemplate = (template: string, variables: TemplateVariables) => {
 };
 
 export function createSepaNoticeTemplateAdapter(): TemplateRendererPort {
-  const render = (variables: TemplateVariables) =>
-    renderTemplate(sepaNoticeTemplate, variables);
+  const render = (templateId: TemplateId, variables: TemplateVariables) => {
+    const template =
+      templateId === "sepaAdminNotice"
+        ? sepaAdminNoticeTemplate
+        : sepaNoticeTemplate;
+    return renderTemplate(template, variables);
+  };
 
   return { render };
 }

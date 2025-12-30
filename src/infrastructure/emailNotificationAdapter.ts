@@ -16,7 +16,9 @@ export function createEmailNotificationAdapter(
   const notify = async ({
     title,
     message,
-    recipientEmail
+    recipientEmail,
+    attachmentDataUrl,
+    attachmentName
   }: NotificationPayload) => {
     if (!config.serviceId || !config.templateId || !config.publicKey) return;
 
@@ -26,7 +28,9 @@ export function createEmailNotificationAdapter(
       {
         title,
         message,
-        to_email: recipientEmail
+        to_email: recipientEmail,
+        attachment: attachmentDataUrl,
+        attachment_name: attachmentName
       },
       { publicKey: config.publicKey }
     );
@@ -36,16 +40,24 @@ export function createEmailNotificationAdapter(
 }
 
 export function createFakeEmailNotificationAdapter(
-    config: EmailNotificationConfig
+  config: EmailNotificationConfig
 ): NotificationPort {
-    const notify = async ({
-                              title,
-                              message,
-                              recipientEmail
-                          }: NotificationPayload) => {
-        if (!config.serviceId || !config.templateId || !config.publicKey) return;
-        console.log("Sending email to: ", recipientEmail, " with message: ", message)
-    };
+  const notify = async ({
+    title,
+    message,
+    recipientEmail,
+    attachmentName
+  }: NotificationPayload) => {
+    if (!config.serviceId || !config.templateId || !config.publicKey) return;
+    console.log(
+      "Sending email to:",
+      recipientEmail,
+      "with message:",
+      message,
+      "attachment:",
+      attachmentName
+    );
+  };
 
-    return { notify };
+  return { notify };
 }
