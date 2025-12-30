@@ -28,16 +28,17 @@ const initialValues: JoinRequestValues = {
 };
 
 type UseJoinFormConfig = {
-  onSubmitRequest: (values: JoinRequestValues) => void;
+  onSubmitRequest: (values: JoinRequestValues) => Promise<unknown> | void;
 };
 
 export const useJoinRequestPresenter = ({
   onSubmitRequest
 }: UseJoinFormConfig) => {
   const [values, setValues] = useState<JoinRequestValues>(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const errors = useMemo(() => validateJoinRequest(values), [values]);
-  const submitDisabled = Object.values(errors).some(Boolean);
+  const submitDisabled = isSubmitting || Object.values(errors).some(Boolean);
 
   const handleChange = (field: keyof JoinRequestValues, value: string) => {
     setValues((prev) => {
@@ -63,10 +64,15 @@ export const useJoinRequestPresenter = ({
     });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (Object.values(errors).some(Boolean)) return;
-    onSubmitRequest(values);
+    setIsSubmitting(true);
+    try {
+      await onSubmitRequest(values);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handlers: JoinRequestHandlers = {
@@ -76,6 +82,7 @@ export const useJoinRequestPresenter = ({
     onToggleChange: handleToggleChange,
     errors,
     submitDisabled,
+    isSubmitting,
     onSubmit: handleSubmit
   };
 

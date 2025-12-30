@@ -14,5 +14,6 @@ export type JoinRequestHandlers = {
   onToggleChange: (field: keyof JoinRequestValues, checked: boolean) => void;
   errors: JoinRequestErrors;
   submitDisabled: boolean;
+  isSubmitting: boolean;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 };
