@@ -1,4 +1,8 @@
-function PrivacyPolicy() {
+type PrivacyPolicyProps = {
+  clubEmail: string;
+};
+
+function PrivacyPolicy({ clubEmail }: PrivacyPolicyProps) {
   return (
     <section className="card shadow-sm">
       <div className="card-body">
@@ -10,7 +14,7 @@ function PrivacyPolicy() {
         </p>
         <p className="text-secondary mb-2">
           Puedes ejercer tus derechos de acceso, rectificación y supresión
-          escribiendo a contacto@club.com.
+          escribiendo a {clubEmail}.
         </p>
         <p className="text-secondary mb-0">
           Para más detalle, contacta con el responsable de datos del club.

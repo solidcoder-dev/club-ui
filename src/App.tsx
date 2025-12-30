@@ -95,8 +95,18 @@ function App() {
                     />
                   }
                 />
-                <Route path="/privacidad" element={<PrivacyPolicy />} />
-                <Route path="/aviso-legal" element={<LegalNotice />} />
+                <Route
+                  path="/privacidad"
+                  element={
+                    <PrivacyPolicy clubEmail={club?.email || "contacto@club.com"} />
+                  }
+                />
+                <Route
+                  path="/aviso-legal"
+                  element={
+                    <LegalNotice clubEmail={club?.email || "contacto@club.com"} />
+                  }
+                />
               </Routes>
             </div>
           </div>

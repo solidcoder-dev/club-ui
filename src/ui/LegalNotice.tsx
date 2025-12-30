@@ -1,4 +1,8 @@
-function LegalNotice() {
+type LegalNoticeProps = {
+  clubEmail: string;
+};
+
+function LegalNotice({ clubEmail }: LegalNoticeProps) {
   return (
     <section className="card shadow-sm">
       <div className="card-body">
@@ -10,7 +14,7 @@ function LegalNotice() {
         </p>
         <p className="text-secondary mb-2">
           El uso del sitio implica la aceptación de estas condiciones. Si tienes
-          dudas, contáctanos en contacto@club.com.
+          dudas, contáctanos en {clubEmail}.
         </p>
         <p className="text-secondary mb-0">
           La propiedad intelectual de los materiales pertenece a sus
