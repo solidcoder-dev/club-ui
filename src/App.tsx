@@ -14,7 +14,7 @@ import { createBrowserClientContextAdapter } from "./infrastructure/browserClien
 import { createSepaMandatePdfAdapter } from "./infrastructure/sepaMandatePdfAdapter";
 import { createEmailNotificationAdapter } from "./infrastructure/emailNotificationAdapter";
 import type { Club } from "./domain/club";
-import { submitContactUseCase } from "./application/contact/submitContactUseCase";
+import { createSubmitContactUseCase } from "./application/contact/submitContactUseCase";
 
 function App() {
   const tenant = (import.meta.env.VITE_TENANT || "default").toLowerCase();
@@ -36,6 +36,10 @@ function App() {
         publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ""
       }),
     []
+  );
+  const submitContactUseCase = useMemo(
+    () => createSubmitContactUseCase(contactNotificationPort),
+    [contactNotificationPort]
   );
   const mandatePdfPort = useMemo(() => createSepaMandatePdfAdapter(), []);
   const [club, setClub] = useState<Club | null>(null);
@@ -77,9 +81,7 @@ function App() {
                   element={
                     <ContactSection
                       club={club}
-                      onSubmitContact={(payload) =>
-                        submitContactUseCase(payload, contactNotificationPort)
-                      }
+                      submitContactUseCase={submitContactUseCase}
                     />
                   }
                 />

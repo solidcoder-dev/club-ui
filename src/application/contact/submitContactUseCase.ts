@@ -7,13 +7,11 @@ export type ContactMessage = {
   recipientEmail: string;
 };
 
-export const submitContactUseCase = async (
-  payload: ContactMessage,
-  notificationPort: NotificationPort
-) => {
-  await notificationPort.notify({
-    title: "Solicitud de contacto",
-    message: `Nombre: ${payload.name}\nEmail: ${payload.email}\n\n${payload.message}`,
-    recipientEmail: payload.recipientEmail
-  });
-};
+export const createSubmitContactUseCase =
+  (notificationPort: NotificationPort) => async (payload: ContactMessage) => {
+    await notificationPort.notify({
+      title: "Solicitud de contacto",
+      message: `Nombre: ${payload.name}\nEmail: ${payload.email}\n\n${payload.message}`,
+      recipientEmail: payload.recipientEmail
+    });
+  };

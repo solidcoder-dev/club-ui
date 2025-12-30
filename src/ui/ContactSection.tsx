@@ -6,7 +6,7 @@ import { useContactPresenter } from "./contact/useContactPresenter";
 
 type ContactSectionProps = {
   club: Club | null;
-  onSubmitContact: (payload: {
+  submitContactUseCase: (payload: {
     name: string;
     email: string;
     message: string;
@@ -14,9 +14,9 @@ type ContactSectionProps = {
   }) => Promise<void> | void;
 };
 
-function ContactSection({ club, onSubmitContact }: ContactSectionProps) {
+function ContactSection({ club, submitContactUseCase }: ContactSectionProps) {
   const presenter = useContactPresenter({
-    onSubmitContact,
+    onSubmitContact: submitContactUseCase,
     recipientEmail: club?.email || ""
   });
 
