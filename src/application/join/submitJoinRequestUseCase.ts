@@ -84,18 +84,14 @@ export const submitJoinRequestUseCase = async ({
     });
 
     const attachmentDataUrl = mandatePdfPort.toDataUrl(mandate);
-    downloadPdf(
-      attachmentDataUrl,
-      `sepa-mandate-${mandate.mandateReference}.pdf`
-    );
 
-    // await notificationPort.notify({
-    //   title: "Nuevo mandato SEPA",
-    //   message: adminMessage,
-    //   recipientEmail: club.email,
-    //   attachmentDataUrl,
-    //   attachmentName: `sepa-mandate-${mandate.mandateReference}.pdf`
-    // });
+    await notificationPort.notify({
+      title: "Nuevo mandato SEPA",
+      message: adminMessage,
+      recipientEmail: club.email,
+      attachmentDataUrl,
+      attachmentName: `sepa-mandate-${mandate.mandateReference}.pdf`
+    });
   }
 
   return mandate;

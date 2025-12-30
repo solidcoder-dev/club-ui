@@ -105,7 +105,10 @@ export function createSepaMandatePdfAdapter(): MandatePdfPort {
     y += 6;
     if (mandate.signatureDataUrl.startsWith("data:image")) {
       try {
-        doc.addImage(mandate.signatureDataUrl, "PNG", 14, y, 80, 30);
+        const imageType = mandate.signatureDataUrl.startsWith("data:image/jpeg")
+          ? "JPEG"
+          : "PNG";
+        doc.addImage(mandate.signatureDataUrl, imageType, 14, y, 80, 30);
       } catch {
         doc.setFontSize(9);
         doc.text("No se pudo renderizar la firma.", 14, y + 6);
