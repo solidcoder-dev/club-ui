@@ -16,7 +16,7 @@ function NavBar({ clubName = "Club", logoUrl }: NavBarProps) {
               src={logoUrl}
               alt={clubName}
               height={50}
-              className="me-2 rounded-1"
+              className="me-2"
             />
           )}
         </Link>
