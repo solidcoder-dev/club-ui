@@ -12,7 +12,8 @@ const resolvedTheme = fs.existsSync(themePath)
   : path.resolve(__dirname, "src/styles/default.scss");
 
 export default defineConfig({
-  resolve: {
+    base: "/club-ui/", // GitHub Pages (project pages): https://solidcoder-dev.github.io/club-ui/
+    resolve: {
     alias: {
       "@tenant-theme": resolvedTheme
     }
