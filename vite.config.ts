@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
     : path.resolve(__dirname, "src/styles/default.scss");
 
   return {
-    base: "/club-ui/", // GitHub Pages (project pages): https://solidcoder-dev.github.io/club-ui/
+    base: `/${tenant}/`, // GitHub Pages (project pages): https://solidcoder-dev.github.io/club-ui/
     resolve: {
       alias: {
         "@tenant-theme": resolvedTheme
