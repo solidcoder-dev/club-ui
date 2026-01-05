@@ -1,4 +1,4 @@
-import type { AulaPort } from "../../ports/aula-port";
+import type { AulaContentPort } from "../../ports/aula-content-port";
 import AulaApproachView from "./AulaApproachView";
 import AulaIntroView from "./AulaIntroView";
 import AulaPartnershipView from "./AulaPartnershipView";
@@ -6,11 +6,12 @@ import AulaTrainingView from "./AulaTrainingView";
 import { useAulaPresenter } from "./useAulaPresenter";
 
 type AulaSectionProps = {
-  aulaPort: AulaPort;
+  aulaContentPort: AulaContentPort;
 };
 
-function AulaSection({ aulaPort }: AulaSectionProps) {
-  const { aula, error, isLoading } = useAulaPresenter({ aulaPort });
+function AulaSection({ aulaContentPort }: AulaSectionProps) {
+  const { intro, training, approach, partnership, error, isLoading } =
+    useAulaPresenter({ aulaContentPort });
 
   return (
     <section>
@@ -28,16 +29,16 @@ function AulaSection({ aulaPort }: AulaSectionProps) {
       {isLoading && !error && (
         <p className="text-body-secondary mb-3">Cargando información...</p>
       )}
-      {aula && !error && (
+      {intro && training && approach && partnership && !error && (
         <>
-          <AulaIntroView aula={aula} />
-          <AulaPartnershipView partnership={aula.partnership} />
+          <AulaIntroView intro={intro} />
+          <AulaPartnershipView partnership={partnership} />
           <div className="row g-4">
             <div className="col-lg-6">
-              <AulaTrainingView trainings={aula.trainings} />
+              <AulaTrainingView trainings={training} />
             </div>
             <div className="col-lg-6">
-              <AulaApproachView approach={aula.approach} />
+              <AulaApproachView approach={approach} />
             </div>
           </div>
         </>

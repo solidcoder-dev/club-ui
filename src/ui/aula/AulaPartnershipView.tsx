@@ -1,7 +1,7 @@
-import type { AulaDTO } from "../../domain/aula";
+import type { AulaPartnershipDTO } from "../../domain/aula";
 
 type AulaPartnershipViewProps = {
-  partnership: AulaDTO["partnership"];
+  partnership: AulaPartnershipDTO;
 };
 
 function AulaPartnershipView({ partnership }: AulaPartnershipViewProps) {

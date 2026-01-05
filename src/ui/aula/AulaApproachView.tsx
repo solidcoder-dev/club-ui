@@ -1,7 +1,7 @@
-import type { AulaDTO } from "../../domain/aula";
+import type { AulaApproachDTO } from "../../domain/aula";
 
 type AulaApproachViewProps = {
-  approach: AulaDTO["approach"];
+  approach: AulaApproachDTO;
 };
 
 function AulaApproachView({ approach }: AulaApproachViewProps) {

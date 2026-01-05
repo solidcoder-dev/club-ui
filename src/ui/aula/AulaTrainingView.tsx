@@ -1,7 +1,7 @@
-import type { AulaDTO } from "../../domain/aula";
+import type { AulaTrainingDTO } from "../../domain/aula";
 
 type AulaTrainingViewProps = {
-  trainings: AulaDTO["trainings"];
+  trainings: AulaTrainingDTO;
 };
 
 function AulaTrainingView({ trainings }: AulaTrainingViewProps) {

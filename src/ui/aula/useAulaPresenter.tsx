@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
-import type { AulaInfo } from "../../domain/aula";
-import type { AulaPort } from "../../ports/aula-port";
+import type {
+  AulaApproachDTO,
+  AulaIntroDTO,
+  AulaPartnershipDTO,
+  AulaTrainingDTO
+} from "../../domain/aula";
+import type { AulaContentPort } from "../../ports/aula-content-port";
 
 type UseAulaPresenterConfig = {
-  aulaPort: AulaPort;
+  aulaContentPort: AulaContentPort;
 };
 
-export const useAulaPresenter = ({ aulaPort }: UseAulaPresenterConfig) => {
-  const [aula, setAula] = useState<AulaInfo | null>(null);
+export const useAulaPresenter = ({ aulaContentPort }: UseAulaPresenterConfig) => {
+  const [intro, setIntro] = useState<AulaIntroDTO | null>(null);
+  const [training, setTraining] = useState<AulaTrainingDTO | null>(null);
+  const [approach, setApproach] = useState<AulaApproachDTO | null>(null);
+  const [partnership, setPartnership] = useState<AulaPartnershipDTO | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -16,10 +24,18 @@ export const useAulaPresenter = ({ aulaPort }: UseAulaPresenterConfig) => {
     setError(null);
     setIsLoading(true);
 
-    aulaPort
-      .getAula()
-      .then((data) => {
-        if (active) setAula(data);
+    Promise.all([
+      aulaContentPort.getIntro(),
+      aulaContentPort.getTraining(),
+      aulaContentPort.getApproach(),
+      aulaContentPort.getPartnership()
+    ])
+      .then(([nextIntro, nextTraining, nextApproach, nextPartnership]) => {
+        if (!active) return;
+        setIntro(nextIntro);
+        setTraining(nextTraining);
+        setApproach(nextApproach);
+        setPartnership(nextPartnership);
       })
       .catch(() => {
         if (active) setError("No pudimos cargar la información del Aula.");
@@ -31,7 +47,7 @@ export const useAulaPresenter = ({ aulaPort }: UseAulaPresenterConfig) => {
     return () => {
       active = false;
     };
-  }, [aulaPort]);
+  }, [aulaContentPort]);
 
-  return { aula, error, isLoading };
+  return { intro, training, approach, partnership, error, isLoading };
 };

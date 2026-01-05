@@ -14,7 +14,7 @@ import { createLocalStorageJoinRequestAdapter } from "./infrastructure/localStor
 import { createBrowserClientContextAdapter } from "./infrastructure/browserClientContextAdapter";
 import { createSepaMandatePdfAdapter } from "./infrastructure/sepaMandatePdfAdapter";
 import { createEmailNotificationAdapter } from "./infrastructure/emailNotificationAdapter";
-import { createJsonAulaAdapter } from "./infrastructure/jsonAulaAdapter";
+import { createJsonAulaContentAdapter } from "./infrastructure/jsonAulaContentAdapter";
 import type { Club } from "./domain/club";
 import { createSubmitContactUseCase } from "./application/contact/submitContactUseCase";
 import { createSubmitJoinRequestUseCase } from "./application/join/submitJoinRequestUseCase";
@@ -23,7 +23,7 @@ function App() {
   const tenant = (import.meta.env.VITE_TENANT || "default").toLowerCase();
   const clubPort = useMemo(() => createJsonClubAdapter(tenant), [tenant]);
   const sepaMandatePort = useMemo(() => createSepaMandateAdapter(), []);
-  const aulaPort = useMemo(() => createJsonAulaAdapter(), []);
+  const aulaContentPort = useMemo(() => createJsonAulaContentAdapter(), []);
   const joinRequestStoragePort = useMemo(
     () => createLocalStorageJoinRequestAdapter(),
     []
@@ -92,7 +92,7 @@ function App() {
                 />
                 <Route
                   path="/aula"
-                  element={<AulaSection aulaPort={aulaPort} />}
+                  element={<AulaSection aulaContentPort={aulaContentPort} />}
                 />
                 <Route
                   path="/contacto"
