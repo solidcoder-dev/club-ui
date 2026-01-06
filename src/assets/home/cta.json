@@ -1,0 +1,12 @@
+{
+  "title": "Únete al club",
+  "description": "Si quieres entrenar con nosotros o resolver dudas, envíanos tu solicitud o escríbenos.",
+  "primary": {
+    "label": "Únete al club",
+    "href": "/unete"
+  },
+  "secondary": {
+    "label": "Contacto",
+    "href": "/contacto"
+  }
+}
