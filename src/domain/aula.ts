@@ -37,6 +37,10 @@ export type AulaCtaDTO = {
     label: string;
     href: string;
   };
+  tertiary: {
+    label: string;
+    href: string;
+  };
 };
 
 export type AulaSocialsDTO = {

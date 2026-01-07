@@ -50,6 +50,10 @@ export type HomeCtaDTO = {
     label: string;
     href: string;
   };
+  tertiary: {
+    label: string;
+    href: string;
+  };
 };
 
 export type HomeSocialsDTO = {

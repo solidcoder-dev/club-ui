@@ -8,5 +8,9 @@
   "secondary": {
     "label": "Contactar",
     "href": "/contacto"
+  },
+  "tertiary": {
+    "label": "Haz una prueba gratuita",
+    "href": "/contacto"
   }
 }

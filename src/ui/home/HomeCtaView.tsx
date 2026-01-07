@@ -17,6 +17,9 @@ function HomeCtaView({ cta }: HomeCtaViewProps) {
         <Link to={cta.secondary.href} className="btn btn-outline-primary btn-sm">
           {cta.secondary.label}
         </Link>
+        <Link to={cta.tertiary.href} className="btn btn-outline-primary btn-sm">
+          {cta.tertiary.label}
+        </Link>
       </div>
     </div>
   );
