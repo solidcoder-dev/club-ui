@@ -8,7 +8,7 @@ type NavBarProps = {
 
 function NavBar({ clubName = "Club", logoUrl }: NavBarProps) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4 sticky-top shadow-sm">
       <div className="container">
         <Link className="navbar-brand fw-bold d-flex align-items-center" to="/">
           {logoUrl && (

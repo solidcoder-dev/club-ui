@@ -8,6 +8,7 @@ import NavBar from "./ui/NavBar";
 import PrivacyPolicy from "./ui/PrivacyPolicy";
 import LegalNotice from "./ui/LegalNotice";
 import Footer from "./ui/Footer";
+import ScrollToTop from "./ui/ScrollToTop";
 import { createJsonClubAdapter } from "./infrastructure/jsonClubAdapter";
 import { createSepaMandateAdapter } from "./infrastructure/sepaMandateAdapter";
 import { createLocalStorageJoinRequestAdapter } from "./infrastructure/localStorageJoinRequestAdapter";
@@ -82,6 +83,7 @@ function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
+      <ScrollToTop />
       <NavBar clubName={club?.name} logoUrl={club?.logoUrl} />
       <main className="flex-grow-1 d-flex align-items-start py-4">
         <div className="container">
