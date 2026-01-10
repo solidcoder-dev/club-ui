@@ -64,50 +64,46 @@ function App() {
       <NavBar clubName={club?.name} logoUrl={club?.logoUrl} />
       <main className="flex-grow-1 d-flex align-items-start py-4">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-7 col-md-9">
-              <Routes>
-                <Route
-                  path="/"
-                  element={<HomeSection homeContentPort={homeContentPort} />}
+          <Routes>
+            <Route
+              path="/"
+              element={<HomeSection homeContentPort={homeContentPort} />}
+            />
+            <Route
+              path="/aula"
+              element={<AulaSection aulaContentPort={aulaContentPort} />}
+            />
+            <Route
+              path="/contacto"
+              element={
+                <ContactSection
+                  club={club}
+                  submitContactUseCase={submitContactUseCase}
                 />
-                <Route
-                  path="/aula"
-                  element={<AulaSection aulaContentPort={aulaContentPort} />}
+              }
+            />
+            <Route
+              path="/unete"
+              element={
+                <JoinSection
+                  joinContentPort={joinContentPort}
+                  clubName={club?.name}
                 />
-                <Route
-                  path="/contacto"
-                  element={
-                    <ContactSection
-                      club={club}
-                      submitContactUseCase={submitContactUseCase}
-                    />
-                  }
-                />
-                <Route
-                  path="/unete"
-                  element={
-                    <JoinSection
-                      joinContentPort={joinContentPort}
-                      clubName={club?.name}
-                    />
-                  }
-                />
-                <Route
-                  path="/privacidad"
-                  element={
-                    <PrivacyPolicy clubEmail={club?.email || "contacto@club.com"} />
-                  }
-                />
-                <Route
-                  path="/aviso-legal"
-                  element={
-                    <LegalNotice clubEmail={club?.email || "contacto@club.com"} />
-                  }
-                />
-              </Routes>
-            </div>
-          </div>
+              }
+            />
+            <Route
+              path="/privacidad"
+              element={
+                <PrivacyPolicy clubEmail={club?.email || "contacto@club.com"} />
+              }
+            />
+            <Route
+              path="/aviso-legal"
+              element={
+                <LegalNotice clubEmail={club?.email || "contacto@club.com"} />
+              }
+            />
+          </Routes>
         </div>
       </main>
       <Footer />
