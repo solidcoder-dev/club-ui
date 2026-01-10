@@ -4,6 +4,5 @@
   "iban": "ES76 1234 5678 9012 3456 7890",
   "cadence": "Mensual",
   "holder": "Club de Rugby Maspalomas",
-  "conceptExample": "Entrenamiento John Doe",
   "footnote": "Si no podemos identificar el pago en la revisión mensual, te avisaremos para regularizarlo y validar el acceso a entrenamientos de ese mes."
 }

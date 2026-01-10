@@ -29,6 +29,5 @@ export type JoinBankInfoDTO = {
   iban: string;
   cadence: string;
   holder?: string;
-  conceptExample?: string;
   footnote: string;
 };

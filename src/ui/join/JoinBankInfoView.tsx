@@ -49,11 +49,6 @@ function JoinBankInfoView({ bankInfo, clubName }: JoinBankInfoViewProps) {
           <span className="small text-body-secondary">
             Periodicidad: {bankInfo.cadence}
           </span>
-          {bankInfo.conceptExample && (
-            <span className="small text-body-secondary">
-              Concepto: {bankInfo.conceptExample}
-            </span>
-          )}
         </div>
       </div>
       <p className="small text-body-secondary mt-3 mb-0">
