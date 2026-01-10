@@ -1,44 +1,54 @@
-import { useState } from "react";
-import JoinRequestForm from "./join/JoinRequestForm";
-import JoinSubmissionModalView from "./join/JoinSubmissionModalView";
-import type { Club } from "../domain/club";
-import { createSubmitJoinRequestUseCase } from "../application/join/submitJoinRequestUseCase";
-import type { JoinRequestValues } from "../application/join/joinRequestPresenter";
+import type { JoinContentPort } from "../ports/join-content-port";
+import JoinBankInfoView from "./join/JoinBankInfoView";
+import JoinFeesView from "./join/JoinFeesView";
+import JoinIntroView from "./join/JoinIntroView";
+import JoinPaymentProcessView from "./join/JoinPaymentProcessView";
+import { useJoinPresenter } from "./join/useJoinPresenter";
 
 type JoinSectionProps = {
-  club: Club | null;
-  submitJoinRequestUseCase: ReturnType<typeof createSubmitJoinRequestUseCase>;
+  joinContentPort: JoinContentPort;
+  clubName?: string;
 };
 
-function JoinSection({ club, submitJoinRequestUseCase }: JoinSectionProps) {
-  const [pdfDataUrl, setPdfDataUrl] = useState<string | null>(null);
-  const [showModal, setShowModal] = useState(false);
-  const [playerName, setPlayerName] = useState("");
-
-  const handleJoinRequest = async (values: JoinRequestValues) => {
-    if (!club) return;
-    const result = await submitJoinRequestUseCase({ values, club });
-    setPdfDataUrl(result.pdfDataUrl);
-    setPlayerName(result.mandate.debtorName);
-    setShowModal(true);
-  };
+function JoinSection({ joinContentPort, clubName }: JoinSectionProps) {
+  const {
+    intro,
+    fees,
+    paymentProcess,
+    bankInfo,
+    error,
+    isLoading
+  } = useJoinPresenter({ joinContentPort });
 
   return (
     <section>
-        <h1 className="card-title h4 fw-bold mb-3">Únete</h1>
-        <p className="text-body-emphasis mb-4">
-          Completa el formulario para iniciar el alta. Nos pondremos en contacto
-          contigo para confirmar los próximos pasos.
+      <div className="d-flex flex-wrap align-items-center gap-2 mb-4">
+        <h1 className="h4 fw-bold mb-0">Cuota de entrenamiento</h1>
+      </div>
+      {error && (
+        <p className="text-danger mb-3" role="alert">
+          {error}
         </p>
-        {showModal && pdfDataUrl && club?.email && (
-          <JoinSubmissionModalView
-            playerName={playerName}
-            clubEmail={club.email}
-            pdfDataUrl={pdfDataUrl}
-            onClose={() => setShowModal(false)}
-          />
-        )}
-        <JoinRequestForm onSubmitRequest={handleJoinRequest} />
+      )}
+      {isLoading && !error && (
+        <p className="text-body-secondary mb-3">Cargando información...</p>
+      )}
+      {intro && fees && paymentProcess && bankInfo && !error && (
+        <>
+          <JoinIntroView intro={intro} />
+          <div className="row g-4">
+            <div className="col-lg-6">
+              <JoinFeesView fees={fees} />
+            </div>
+            <div className="col-lg-6">
+              <JoinPaymentProcessView paymentProcess={paymentProcess} />
+            </div>
+          </div>
+          <div className="mt-4">
+            <JoinBankInfoView bankInfo={bankInfo} clubName={clubName} />
+          </div>
+        </>
+      )}
     </section>
   );
 }

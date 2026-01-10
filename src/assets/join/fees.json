@@ -1,0 +1,18 @@
+{
+  "title": "Importes disponibles",
+  "subtitle": "Elige la cuota que mejor encaja con tu situación actual.",
+  "fees": [
+    {
+      "label": "Externo",
+      "price": "15€",
+      "cadence": "al mes",
+      "description": "Para quienes entrenan con nosotros sin vínculo universitario."
+    },
+    {
+      "label": "Universitario",
+      "price": "10€",
+      "cadence": "al mes",
+      "description": "Para estudiantes con matrícula universitaria vigente."
+    }
+  ]
+}
