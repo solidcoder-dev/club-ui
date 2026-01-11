@@ -1,7 +1,7 @@
 {
   "title": "Configura el pago automático",
   "description": "Configura el pago automático usando este número de cuenta (IBAN).",
-  "iban": "ES76 1234 5678 9012 3456 7890",
+  "iban": "ES37 0073 0100 5105 0671 0383",
   "cadence": "Mensual",
   "holder": "Club de Rugby Maspalomas",
   "footnote": "Si no podemos identificar el pago en la revisión mensual, te avisaremos para regularizarlo y validar el acceso a entrenamientos de ese mes."
