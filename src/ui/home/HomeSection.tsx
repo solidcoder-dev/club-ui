@@ -51,6 +51,9 @@ function HomeSection({ homeContentPort }: HomeSectionProps) {
         !error && (
           <>
             <HomeIntroView intro={intro} />
+            <div className="mb-4">
+              <HomeCtaView cta={cta} />
+            </div>
             <HomePartnershipView partnership={partnership} />
             <div className="row g-4">
               <div className="col-lg-6">
@@ -72,7 +75,6 @@ function HomeSection({ homeContentPort }: HomeSectionProps) {
             <div className="mt-4">
               <HomeSocialsView socials={socials} />
             </div>
-            <HomeCtaView cta={cta} />
           </>
         )}
     </section>
